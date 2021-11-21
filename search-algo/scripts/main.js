@@ -1,5 +1,5 @@
-import { countries, infoElement } from "./data.js";
-import { $, renderElement, renderFragment, search } from "./functions.js";
+import { countries } from "./data.js";
+import { $, renderElement, search } from "./functions.js";
 
 
 let searchData =[];
@@ -20,13 +20,14 @@ function runSearch() {
 searchButton.addEventListener('click', () => {
     runSearch();
 });
-searchInput.addEventListener('keyup', (e) => {
-    if(e.key !== "Enter") return;
+
+searchInput.addEventListener('keypress', () => {
+    // if(e.key !== "Enter") return;
     runSearch();
 })
 
-window.onload = () => {
-    countries.forEach( country => {
-        renderElement('li', `${country}`, '#list')
-    });
-}
+// window.onload = () => {
+//     countries.forEach( country => {
+//         renderElement('li', `${country}`, '#list')
+//     });
+// }

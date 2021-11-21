@@ -44,11 +44,12 @@
         <form onsubmit="return false">
             <label for="search">Search: </label>
             <input
-                type="search"
+                type="text"
                 name="search"
                 id="search"
                 placeholder="Search"
                 autocomplete="off"
+                onchange="()=>console.log('working')"
             />
             <input type="button" value="Search" id="search-button">
         </form>
