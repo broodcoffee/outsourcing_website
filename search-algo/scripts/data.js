@@ -224,11 +224,11 @@ const countries = [
 ];
 
 const infoElement = [
-    {title: "Web Development", body: "The content of the card goes here.", footer: "Details like tags goes here."},
-    {title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here."},
-    {title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here."},
-    {title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here."},
-    {title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here."},
+    { title: "Web Development", body: "The content of the card goes here.", footer: "Details like tags goes here." },
+    { title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here." },
+    { title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here." },
+    { title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here." },
+    { title: "This is the Title", body: "The content of the card goes here.", footer: "Details like tags goes here." },
 ]
 
 
