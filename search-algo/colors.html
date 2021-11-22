@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Colors</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            display: flex;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 .25rem .375rem rgba(0,0,0,0.2);
+            width: max-content;
+            /* border-radius: 4rem;
+            overflow: hidden; */
+        }
+        .color-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 1;
+            flex-grow: 0;
+            height: 4rem;
+            width: 8rem;
+            font-size: .875rem;
+        }
+        .color-box > span {
+            display: inline-block;
+            padding: .125rem .75rem;
+            background-color: #333;
+            border-radius: 1rem;
+            color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="color-box"><span>#364eba</span></div>
+        <div class="color-box"><span>#2290cf</span></div>
+        <div class="color-box"><span>#e26e79</span></div>
+        <div class="color-box"><span>#e8eac2</span></div>
+    </div>
+    <div class="container">
+        <div class="color-box"><span>#00b3eb</span></div>
+        <div class="color-box"><span>#c9e3da</span></div>
+        <div class="color-box"><span>#f1f1f1</span></div>
+
+    </div>
+    <div class="container">
+        <div class="color-box"><span>#1692d8</span></div>
+        <div class="color-box"><span>#feb707</span></div>
+        <div class="color-box"><span>#f2f3f2</span></div>
+    </div>
+    <div class="container">
+        <div class="color-box"><span>#374397</span></div>
+        <div class="color-box"><span>#5870ae</span></div>
+        <div class="color-box"><span>#f2f3f2</span></div>
+        <div class="color-box"><span>#c4996c</span></div>
+    </div>
+    <div class="container">
+        <div class="color-box"><span>#34375a</span></div>
+        <div class="color-box"><span>#5b4ae4</span></div>
+        <div class="color-box"><span>#a946bd</span></div>
+        <div class="color-box"><span>#dc4e76</span></div>
+    </div>
+    <div class="container">
+        <div class="color-box"><span>#88d841</span></div>
+        <div class="color-box"><span>#66b823</span></div>
+        <div class="color-box"><span>#25720a</span></div>
+        <div class="color-box"><span>#dad8db</span></div>
+    </div>
+
+    <script>
+        const colorBox = document.querySelectorAll('.color-box');
+
+        window.onload = () => {
+            colorBox.forEach( box => {
+                box.style.backgroundColor = box.textContent;
+            })
+        }
+    </script>
+</body>
+</html>
