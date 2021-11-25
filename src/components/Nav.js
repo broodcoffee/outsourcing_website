@@ -2,21 +2,60 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { HiMenuAlt3 } from "react-icons/hi"; //Hero Icons
 import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
-import { Button } from "@mui/material";
 import { ResponsiveBox } from "./utils";
 import { Link } from 'react-router-dom';
+import styled from '@emotion/styled';
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Nav = () => {
+const NavContainer = styled(AppBar)`
+    background-color: var(--color5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 .5rem;
+    /* box-shadow: 0 2px 6px rgba(0,0,0,0.25); */
+`;
+const StyledLink = styled(Link)`
+    color: var(--gray4);
+    font-size: .875rem;
+    font-weight: 600;
+    margin-left: clamp(1rem, 3vmin, 2.5rem);
+    position: relative;
+    text-decoration: none;
+    letter-spacing: -.5px;
+
+    &::after {
+            content: '';
+            height: 2px;
+            width: 0;
+            transition: .2s;
+            position: absolute;
+            bottom: -.25rem;
+            left: 0;
+            background-color: var(--color2);
+        }
+
+    &:hover:not(.active) {
+        &::after {
+            width: 100%;
+        }
+    }
+`;
+
+
+
+function Nav() {
     const [showMenu, setShowMenu] = useState();
 
     function calcWidth() {
-        if (window.innerWidth < 600) return setShowMenu(true);
-        else return setShowMenu(false);
+        if (window.innerWidth < 600)
+            return setShowMenu(true);
+        else
+            return setShowMenu(false);
     };
-    
+
     useEffect(() => {
         window.onload = () => calcWidth();
         window.onresize = () => calcWidth();
@@ -24,42 +63,22 @@ const Nav = () => {
 
 
     return (
-        <AppBar position="sticky" color="primary" sx={{ boxShadow: 0 }}>
+        <NavContainer position="sticky" color="default" sx={{ boxShadow: 0 }}>
             <ResponsiveBox>
                 <Toolbar sx={{
                     display: 'flex',
-                    justifyContent: 'space-between'
+                    justifyContent: 'space-between',
+                    padding: '0 .25rem',
+                    borderBottom: '1px solid var(--gray1)'
                 }}>
-                    <Typography variant="h6" sx={{ fontSize: "1rem" }}>
+                    <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
                         Outsourcing
                     </Typography>
                     {!showMenu && (
-                        <Box sx={{ ml: "auto" }}>
-                            <Button
-                                variant="outlined"
-                                color="secondary"
-                                disableElevation
-                                sx={{ 
-                                    color: '#f2fdff', 
-                                    fontSize: ".875rem",
-                                }}
-                            >
-                                <Link to="/">Find a Job</Link>
-                            </Button>
-                            <Button
-                                variant="text"
-                                color="primary"
-                                sx={{ ml: 2, color: '#f2fdff', fontSize: ".875rem" }}
-                            >
-                                <Link to="/">About Us</Link>
-                            </Button>
-                            <Button
-                                variant="text"
-                                color="primary"
-                                sx={{ ml: 1, color: '#f2fdff', fontSize: ".875rem" }}
-                            >
-                                <Link to="/">Contact Us</Link>
-                            </Button>
+                        <Box>
+                            <StyledLink className="route-links" to="/">Find Jobs</StyledLink>
+                            <StyledLink className="route-links" to="/about">About Us</StyledLink>
+                            <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
                         </Box>
                     )}
                     {showMenu && (
@@ -68,13 +87,13 @@ const Nav = () => {
                             color="inherit"
                             aria-label="menu"
                         >
-                            <HiMenuAlt3 />
+                            <MenuIcon htmlColor="#546e7a"/>
                         </IconButton>
                     )}
                 </Toolbar>
             </ResponsiveBox>
-        </AppBar>
+        </NavContainer>
     );
-};
+}
 
 export default Nav;

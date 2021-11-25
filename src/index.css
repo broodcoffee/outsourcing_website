@@ -1,22 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
 
 :root {
-    --color1: #3152e6;
+    --color1: #384dac;
     --color2: #228fcf;
     --color3: #00b4eb;
     --color4: #90e0ef;
-    --color5: #f2fdff;
+    --color5: #fefefe;
     --warning: #e6405b;
+    --gray1: #d0d7dc;
+    --gray2: #b0bec5;
+    --gray3: #78909c;
+    --gray4: #546e7a;
+    --font1: 'Montserrat', sans-serif;
+    --font2: 'Outfit', sans-serif;
+    --font3: 'Rubik', sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-    text-decoration: none;
-    color: var(--color5);
 }
