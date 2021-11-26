@@ -2,12 +2,55 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
 import { Box } from "@mui/system";
 import { ResponsiveBox } from "./utils";
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import MenuIcon from '@mui/icons-material/Menu';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from "@mui/material";
+import { theme as customTheme } from "../mui-theme";
+
+
+function Nav() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+
+    return (
+        <NavContainer position="sticky" color="default" sx={{ boxShadow: 0 }}>
+            <ResponsiveBox>
+                <Toolbar sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    padding: '0 .25rem',
+                    borderBottom: '1px solid var(--gray1)'
+                }}>
+                    <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
+                        Outsourcing
+                    </Typography>
+                    {!isMobile ? (
+                        <Box>
+                            <StyledLink1 className="route-links" to="/">Find Jobs</StyledLink1>
+                            <StyledLink className="route-links" to="/about">About Us</StyledLink>
+                            <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
+                        </Box>
+                    ) : (
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="menu"
+                        >
+                            <MenuIcon htmlColor={customTheme.palette.grey[600]}/>
+                        </IconButton>
+                    )}
+                </Toolbar>
+            </ResponsiveBox>
+        </NavContainer>
+    );
+}
+
+export default Nav;
 
 const NavContainer = styled(AppBar)`
     background-color: var(--color5);
@@ -43,57 +86,18 @@ const StyledLink = styled(Link)`
         }
     }
 `;
+const StyledLink1 = styled(Link)`
+    border-radius: .25rem;
+    background-color: var(--color2);
+    color: var(--color5);
+    display: inline-block;
+    font-size: .875rem;
+    font-weight: 600;
+    text-decoration: none;
+    padding: .5rem .875rem;
+    transition: background-color .2s;
 
-
-
-function Nav() {
-    const [showMenu, setShowMenu] = useState();
-
-    function calcWidth() {
-        if (window.innerWidth < 600)
-            return setShowMenu(true);
-        else
-            return setShowMenu(false);
-    };
-
-    useEffect(() => {
-        window.onload = () => calcWidth();
-        window.onresize = () => calcWidth();
-    }, []);
-
-
-    return (
-        <NavContainer position="sticky" color="default" sx={{ boxShadow: 0 }}>
-            <ResponsiveBox>
-                <Toolbar sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    padding: '0 .25rem',
-                    borderBottom: '1px solid var(--gray1)'
-                }}>
-                    <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
-                        Outsourcing
-                    </Typography>
-                    {!showMenu && (
-                        <Box>
-                            <StyledLink className="route-links" to="/">Find Jobs</StyledLink>
-                            <StyledLink className="route-links" to="/about">About Us</StyledLink>
-                            <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
-                        </Box>
-                    )}
-                    {showMenu && (
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                        >
-                            <MenuIcon htmlColor="#546e7a"/>
-                        </IconButton>
-                    )}
-                </Toolbar>
-            </ResponsiveBox>
-        </NavContainer>
-    );
-}
-
-export default Nav;
+    &:hover {
+        background-color: var(--color1);
+    }
+`
