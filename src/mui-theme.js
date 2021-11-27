@@ -12,6 +12,7 @@ export const theme = createTheme({
             main: "#e04245",
         },
         grey: {
+            1: "#f7fafc",
             50: "#eceff1",
             100: "#cfd8dc",
             200: "#b0bec5",
@@ -42,6 +43,10 @@ export const theme = createTheme({
             textTransform: "none",
             fontWeight: "500",
         },
+        body1: {
+            fontSize: '.875rem',
+            color: '#37474f',
+        }
     },
     components: {
         MuiButton: {

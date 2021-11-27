@@ -5,7 +5,7 @@ import { BrowserRouter as Router, /*Routes, Route*/} from 'react-router-dom';
 import { ResponsiveBox } from "./components/utils";
 import Search from "./pages/Search.js";
 
-console.log(theme)
+// console.log(theme)
 
 function App() {
     return (
