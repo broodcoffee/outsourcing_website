@@ -18,7 +18,7 @@ const SearchItem = ({ header, body, tags, compensation, duration, postDate }) =>
                         { duration >= 1 ? duration : 4 * duration } 
                         { 
                             duration < 1 ? 
-                            ( 4 * duration === 1 ? ' week' : ' weeks' ) : 
+                            ( 4 * duration === 1 ? ' 2week' : ' weeks' ) : 
                             ( duration > 1 ? ' months' : ' month')
                         }
                     </span>
@@ -50,6 +50,10 @@ const ItemBody = styled.p`
     font-weight: 300;
     line-height: 140%;
     letter-spacing: -.25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 `
 const ItemTag = styled.div`
     font-size: .875rem;

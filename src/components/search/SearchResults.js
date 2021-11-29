@@ -14,17 +14,15 @@ import { Sort } from "@mui/icons-material";
 import { theme } from "../../mui-theme";
 import { useState } from "react";
 import SearchItem from "./SearchItem";
-import { jobs } from '../../data/jobs';
 import { useDataContext } from "../../pages/Search";
 import styled from '@emotion/styled';
 
 
 const SearchResults = () => {
 
-    const { searchInput } = useDataContext();
+    const { searchInput, jobsData, setJobsData } = useDataContext();
 
     const [ filterParam, setFilterParam ] = useState('');
-    const [ jobsData, setJobsData ] = useState(jobs)
 
     const muiTheme = useTheme();
     const breakPoint = useMediaQuery(muiTheme.breakpoints.down('sm'));
@@ -37,13 +35,23 @@ const SearchResults = () => {
     };
 
     const sortViaParam = param => {  //used at getParamAndSort()
+        
         switch ( param ) {
             case 'compensation':
-                return setJobsData( jobsData.sort( (a,b) => a.compensation - b.compensation ) );
+                return setJobsData({
+                    ...jobsData,
+                    filtered: jobsData.filtered.sort( (a,b) => a.compensation - b.compensation ),
+                });
             case 'date':
-                return setJobsData( jobsData.sort( (a,b) => new Date(b.date) - new Date(a.date) ) );
+                return setJobsData({
+                    ...jobsData,
+                    filtered: jobsData.filtered.sort( (a,b) => new Date(b.date) - new Date(a.date) ) 
+                });
             case 'duration':
-                return setJobsData( jobsData.sort( (a,b) => a.duration - b.duration ) );
+                return setJobsData({
+                    ...jobsData,
+                    filtered: jobsData.filtered.sort( (a,b) => a.duration - b.duration ) 
+                });
             default:
                 return jobsData
         }
@@ -79,13 +87,22 @@ const SearchResults = () => {
                 </RadioGroup>
             </FormControl>
             <Box sx={resultBox}>
-                <Typography variant="h2" sx={{fontSize: '1.125rem', fontWeight: 500, mb: 1.5}}>
-                    Results:
-                </Typography>
+                <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                    <Typography variant="h2" sx={{fontSize: '1.125rem', fontWeight: 500, mb: 1.5}}>
+                        Results:
+                    </Typography>
+                    <Typography variant="subtitle" sx={{fontSize: '.75rem', fontWeight: 500, mb: 1.5}}>
+                        {
+                            jobsData.filtered.length !== 0 ? 
+                                jobsData.filtered.length + ` Match${jobsData.filtered.length > 1 ? 'es' : ''}` : 
+                                ( searchInput.category !== 'Any' ? '0 Match, Showing All Results' : '')
+                        }
+                    </Typography>
+                </Box>
                 <Divider />
                 <ResultsContainer>
-                    {
-                        jobsData.map( item => (
+                    { 
+                        jobsData.filtered.map( item => (
                             <SearchItem
                                 key={item.id}
                                 header={item.jobName}
@@ -119,9 +136,13 @@ const mainBox = {
 };
 const formStyle = {
     padding: '1rem',
-    width: '18rem'
+    width: '14rem',
+    flexShrink: 0,
+    flexGrow: 0,
 }
 const resultBox = {
+    display: 'flex',
+    flexDirection: 'column',
     backgroundColor: 'white', 
     width: '100%',
     padding: '1rem 1.25rem 3rem 1.25rem',

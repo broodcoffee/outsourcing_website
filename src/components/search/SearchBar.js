@@ -4,31 +4,56 @@ import { theme } from "../../mui-theme";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { useDataContext } from "../../pages/Search";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 
 const categories = [
-    'Any', 'Front-end', 'Back-end', 'Full-stack', 'UX/UI Design'
+    'Any', 'Front-end', 'Back-end', 'Full-stack', 'UI/UX Design'
 ]
 
 // COMPONENT
 const SearchBar = () => {
-    const { searchInput, setSearchInput } = useDataContext();
+    const { searchInput, setSearchInput, jobsData, setJobsData } = useDataContext();
 
     const handleTextChange = (e) => {
+        if(searchInput.text.length === 0) filterCategory()
         setSearchInput({ ...searchInput, text: e.target.value });
     }
 
     const handleCategoryChange = (e) => {
-        setSearchInput({ ...searchInput, category: e.target.value });
+        setSearchInput({ ...searchInput, category: e.target.value });  
+        filterCategory(e.target.value)
     };
 
     const handleSubmit = (e) => {
-        if(e.key === 'Enter') console.log('This logs on enter key.')
+        if(e.key === 'Enter') search();
     }
 
-    // useEffect(() => {
-    //     console.log(searchInput);
-    // }, [searchInput]);
+    const search = () => {
+        setJobsData({
+            ...jobsData,
+            filtered: jobsData.filtered.filter( item => (
+                        item.jobName.toLowerCase()
+                            .includes(searchInput.text.toLowerCase())
+                    )
+                )
+            }
+        )
+        console.log('working')
+
+    };
+
+    const filterCategory = (value) => {
+        setJobsData({
+            ...jobsData, 
+            filtered: jobsData.main.filter( job => (
+                job.category.includes((value ?? searchInput.category).toLowerCase())
+            ))
+        })
+    }
+
+    useEffect(() => {
+        console.log(jobsData);
+    }, [jobsData]);
 
     return (
         <Box sx={boxStyle}>
