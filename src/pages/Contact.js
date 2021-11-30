@@ -12,7 +12,7 @@ function Contact () {
                 <input type="text" id="name" required />
                 <ItemHeader htmlFor="email">Email: </ItemHeader>
                 <input type="email" id="email" required />
-                <ItemHeader htmlFor="message">Message: (testing lang itong laman) </ItemHeader>
+                <ItemHeader htmlFor="message">Message: </ItemHeader>
                 <textarea id="message" required rows='5'></textarea> 
             </FormControl>
         </ResponsiveBox>
