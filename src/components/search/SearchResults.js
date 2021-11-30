@@ -8,22 +8,32 @@ import {
     RadioGroup,
     Typography,
     useTheme,
-    useMediaQuery
+    useMediaQuery,
+    IconButton
 } from "@mui/material";
-import { Sort } from "@mui/icons-material";
+import { Sort, ArrowCircleDown } from "@mui/icons-material";
 import { theme } from "../../mui-theme";
-import { useState } from "react";
+// import { useState } from "react";
 import SearchItem from "./SearchItem";
 import { useDataContext } from "../../pages/Search";
 import styled from '@emotion/styled';
+import PaginationComponent from "./Pagination";
 
 
 const SearchResults = () => {
 
-    const { searchInput, jobsData, setJobsData } = useDataContext();
+    const { 
+        searchInput, 
+        jobsData, 
+        setJobsData, 
+        isReversed, 
+        setIsReversed,
+        filterParam, 
+        setFilterParam,
+        range,
+      } = useDataContext();
 
-    const [ filterParam, setFilterParam ] = useState('');
-
+    
     const muiTheme = useTheme();
     const breakPoint = useMediaQuery(muiTheme.breakpoints.down('sm'));
 
@@ -32,7 +42,22 @@ const SearchResults = () => {
         if( filterParam === str ) return;
         setFilterParam(str);
         sortViaParam(str);
+        setIsReversed(false);
     };
+
+    const reverseOrder = () => {
+        setIsReversed(!isReversed);
+        setJobsData({
+            ...jobsData,
+            filtered: jobsData.filtered.reverse()
+        })
+    };
+
+    // const toggleSortHeight = () => {
+    //     if(!breakPoint) return;
+    //     let radioButtons = document.getElementById('radio-group');
+    //     radioButtons.style.height = '0';
+    // }
 
     const sortViaParam = param => {  //used at getParamAndSort()
         
@@ -40,7 +65,7 @@ const SearchResults = () => {
             case 'compensation':
                 return setJobsData({
                     ...jobsData,
-                    filtered: jobsData.filtered.sort( (a,b) => a.compensation - b.compensation ),
+                    filtered: jobsData.filtered.sort( (a,b) => b.compensation - a.compensation ),
                 });
             case 'date':
                 return setJobsData({
@@ -60,8 +85,13 @@ const SearchResults = () => {
     // useEffect( () => console.log(jobsData), [jobsData] )
     
     return (
-        <Box sx={{...mainBox, mx: !breakPoint ? 4 : .5,}} component={Paper}>
-            <FormControl sx={formStyle}>
+        <Box 
+            sx={{
+                ...mainBox, 
+                mx: !breakPoint ? 2.5 : 1,
+                flexDirection: breakPoint ? 'column' : 'row',
+            }} component={Paper}>
+            <FormControl sx={{ ...formStyle }}>
                 <Typography sx={labeledIcon}>
                     <Sort
                         fontSize="small"
@@ -70,8 +100,12 @@ const SearchResults = () => {
                     />
                     Sort:
                 </Typography>
-                <Divider />
-                <RadioGroup sx={radioGroup} aria-label="options" name="options">
+                <RadioGroup 
+                    sx={{ ...radioGroup, height: breakPoint ? '2rem' : 'max-content' }} 
+                    aria-label="options" 
+                    name="options"
+                    id="radio-group"
+                >
                     {["Compensation", "Date", "Duration"].map(
                         (item) => (
                             <FormControlLabel
@@ -80,6 +114,7 @@ const SearchResults = () => {
                                 value={item.toLocaleLowerCase()}
                                 control={<Radio size="small" sx={radioStyle}/>}
                                 label={item}
+                                checked={ item.toLocaleLowerCase() === filterParam.toLowerCase() && true }
                                 onClick={ () => getParamAndSort(item) }
                             />
                         )
@@ -89,7 +124,15 @@ const SearchResults = () => {
             <Box sx={resultBox}>
                 <Box sx={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
                     <Typography variant="h2" sx={{fontSize: '1.125rem', fontWeight: 500, mb: 1.5}}>
-                        Results:
+                        Results:&nbsp;
+                        <IconButton 
+                            sx={{transform:(isReversed ? 'rotate(180deg)': 'rotate(0deg)'), transition: '.2s'}}
+                            onClick={ () => {
+                                reverseOrder();
+                            }}
+                        >
+                            <ArrowCircleDown />
+                        </IconButton>
                     </Typography>
                     <Typography variant="subtitle" sx={{fontSize: '.75rem', fontWeight: 500, mb: 1.5}}>
                         {
@@ -102,18 +145,23 @@ const SearchResults = () => {
                 <Divider />
                 <ResultsContainer>
                     { 
-                        jobsData.filtered.map( item => (
-                            <SearchItem
-                                key={item.id}
-                                header={item.jobName}
-                                body={item.description}
-                                tags={item.requiredLang}
-                                compensation={item.compensation}
-                                duration={item.duration}
-                                postDate={item.date}
-                            />
-                        ))
+                        jobsData.filtered
+                            .filter( item => jobsData.filtered.indexOf(item) >= range.start && jobsData.filtered.indexOf(item) <= range.end)
+                            .map( item => (
+                                <SearchItem
+                                    key={item.id}
+                                    header={item.jobName}
+                                    body={item.description}
+                                    tags={item.requiredLang}
+                                    compensation={item.compensation}
+                                    duration={item.duration}
+                                    postDate={item.date}
+                                    allData={item}
+                                />
+                            )
+                        )
                     }
+                    <PaginationComponent />
                 </ResultsContainer>
             </Box>
         </Box>
@@ -136,7 +184,7 @@ const mainBox = {
 };
 const formStyle = {
     padding: '1rem',
-    width: '14rem',
+    width: 'clamp(12rem, 20vw, 14rem)',
     flexShrink: 0,
     flexGrow: 0,
 }
@@ -150,15 +198,16 @@ const resultBox = {
 }
 const labeledIcon = {
     display: "flex",
+    alignItems:'center',
     fontSize: ".875rem",
     fontWeight: 600,
     color: theme.palette.grey[700],
-    mb: 1.5,
+    height: '2.5rem',
     // alignItems: 'center'
 };
 const radioGroup = {
     mt: 1,
-    ml: 3,
+    ml: 'clamp(1rem, 2vw, 3rem)',
 };
 const radioStyle ={
     color: theme.palette.grey[300],
@@ -169,4 +218,7 @@ const radioStyle ={
 
 const ResultsContainer = styled.div`
     height: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 `

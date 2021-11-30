@@ -12,7 +12,14 @@ const categories = [
 
 // COMPONENT
 const SearchBar = () => {
-    const { searchInput, setSearchInput, jobsData, setJobsData } = useDataContext();
+    const { 
+        searchInput, 
+        setSearchInput, 
+        jobsData, 
+        setJobsData, 
+        setIsReversed,
+        setFilterParam,
+      } = useDataContext();
 
     const handleTextChange = (e) => {
         if(searchInput.text.length === 0) filterCategory()
@@ -21,11 +28,15 @@ const SearchBar = () => {
 
     const handleCategoryChange = (e) => {
         setSearchInput({ ...searchInput, category: e.target.value });  
-        filterCategory(e.target.value)
+        filterCategory(e.target.value);
+        setIsReversed(false);
+        setFilterParam('');
     };
 
     const handleSubmit = (e) => {
         if(e.key === 'Enter') search();
+        setIsReversed(false);
+        setFilterParam('');
     }
 
     const search = () => {

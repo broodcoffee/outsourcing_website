@@ -18,13 +18,19 @@ const Search = () => {
         main: jobs, 
         filtered: jobs,
     });
+    const [ isReversed, setIsReversed ] = useState(false); //for ascending descending button @ SearchResults.js 
+    const [ filterParam, setFilterParam ] = useState('');
+    const [ range, setRange ] = useState({start: 0, end: 9});
+    // const [ sortDefault, setSortDefault] = useState('');
+
 
     const searchStates = { 
         searchInput, setSearchInput, //imported to SearchBar.js
         jobsData, setJobsData, //import to SearchBar.js & SearchResults.js
+        isReversed, setIsReversed, //for ascending descending button @ SearchResults.js 
+        filterParam, setFilterParam, //param for sort @ SearchResults.js 
+        range, setRange,
     }
-
-    // useEffect( () => console.log(searchInput), [searchInput])
 
     return (
         <Box sx={ boxStyle }>

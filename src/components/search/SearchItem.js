@@ -1,31 +1,53 @@
 import styled from '@emotion/styled';
 import { theme } from '../../mui-theme';
+import { useGlobalDataContext } from '../../App';
+import { StyledLink } from '../utils';
 
-const SearchItem = ({ header, body, tags, compensation, duration, postDate }) => {
+const SearchItem = ({ header, body, tags, compensation, duration, postDate, allData }) => {
+
+    const { setItemDetail } = useGlobalDataContext();
+    
     const d = new Date(postDate)
+
+    const getAllData = () => {
+        setItemDetail({
+            jobName: allData.jobName,
+            category: allData.category,
+            description: allData.description,
+            compensation: allData.compensation,
+            duration: allData.duration,
+            employer: allData.employer,
+            date: d.toDateString(),
+            jobId: allData.id,
+            lang: allData.requiredLang
+        })
+    }
+
     return (
-        <ItemContainer >
-            <ItemHeader>{ header }</ItemHeader>
-            <ItemBody>{ body }</ItemBody>
-            <ItemTag>
-                { tags.sort().map( tag => <TagContent key={tag}>{ tag }</TagContent> ) }
-            </ItemTag>
-            <ItemInfo>
-                <ItemInfoContent>Rate: <span>${ compensation }/hour</span></ItemInfoContent>
-                <ItemInfoContent>
-                    Duration:&nbsp;
-                    <span>
-                        { duration >= 1 ? duration : 4 * duration } 
-                        { 
-                            duration < 1 ? 
-                            ( 4 * duration === 1 ? ' 2week' : ' weeks' ) : 
-                            ( duration > 1 ? ' months' : ' month')
-                        }
-                    </span>
-                </ItemInfoContent>
-                <ItemInfoContent>Posted: <span>{ d.toDateString() }</span></ItemInfoContent>
-            </ItemInfo>
-        </ItemContainer>
+        <StyledLink to="/search/item-detail">
+            <ItemContainer onClick={getAllData}>
+                <ItemHeader>{ header }</ItemHeader>
+                <ItemBody>{ body }</ItemBody>
+                <ItemTag>
+                    { tags.sort().map( tag => <TagContent key={tag}>{ tag }</TagContent> ) }
+                </ItemTag>
+                <ItemInfo>
+                    <ItemInfoContent>Rate: <span>${ compensation }/hour</span></ItemInfoContent>
+                    <ItemInfoContent>
+                        Duration:&nbsp;
+                        <span>
+                            { duration >= 1 ? duration : 4 * duration }
+                            {
+                                duration < 1 ?
+                                ( 4 * duration === 1 ? ' week' : ' weeks' ) :
+                                ( duration > 1 ? ' months' : ' month')
+                            }
+                        </span>
+                    </ItemInfoContent>
+                    <ItemInfoContent>Posted: <span>{ d.toDateString() }</span></ItemInfoContent>
+                </ItemInfo>
+            </ItemContainer>
+        </StyledLink>
     )
 }
 
@@ -35,6 +57,13 @@ const ItemContainer = styled.div`
     width: 100%;
     padding: .5rem 1rem;
     margin-bottom: 2rem;
+    cursor: pointer;
+    transition: .15s;
+    border-radius: .5rem;
+
+    &:hover {
+        background-color: var(--gray);
+    }
 `
 const ItemHeader = styled.h3`
     color: ${theme.palette.primary.main};

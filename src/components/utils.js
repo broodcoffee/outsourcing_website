@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Box } from "@mui/system";
+import { Link } from "react-router-dom"
 
 const ResponsiveBox = styled(Box)`
     width: calc(100%);
@@ -23,10 +24,14 @@ const InputText = styled.input`
 const InputLabel = styled.label`
     font-size: .875rem;
 `
+const StyledLink = styled(Link)`
+    text-decoration: none;
+`
 
 export { 
     ResponsiveBox, 
     FlexBox, 
     InputText,
-    InputLabel
+    InputLabel,
+    StyledLink
 }
