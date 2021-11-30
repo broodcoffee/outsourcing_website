@@ -29,11 +29,14 @@ function Nav() {
                     padding: '0 .25rem',
                     borderBottom: '1px solid var(--gray1)'
                 }}>
-                    <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
-                        Outsourcing
-                    </Typography>
+                    <Link to='/home' className='navbar-logo'>          
+                        <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
+                            Outsourcing
+                        </Typography>
+                    </Link>
                     {!isMobile ? (
                         <Box>
+                            <StyledLink className="route-links" to="/home">Home</StyledLink>
                             <StyledLink 
                                 onClick={()=>setPageName("jobs")} 
                                 className="route-links" 
