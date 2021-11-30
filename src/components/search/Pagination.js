@@ -3,7 +3,7 @@ import PaginationItem from "@mui/material/PaginationItem";
 import Stack from "@mui/material/Stack";
 import ArrowLeft from "@mui/icons-material/ArrowLeft";
 import ArrowRight from "@mui/icons-material/ArrowRight";
-import { useDataContext } from "../../pages/Search";
+import { useDataContext } from "../../pages/Jobs";
 import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 

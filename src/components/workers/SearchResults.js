@@ -15,7 +15,7 @@ import { Sort, ArrowCircleDown } from "@mui/icons-material";
 import { theme } from "../../mui-theme";
 // import { useState } from "react";
 import SearchItem from "./SearchItem";
-import { useDataContext } from "../../pages/Search";
+import { useDataContext } from "../../pages/Workers";
 import styled from '@emotion/styled';
 import PaginationComponent from "./Pagination";
 
@@ -24,8 +24,8 @@ const SearchResults = () => {
 
     const { 
         searchInput, 
-        jobsData, 
-        setJobsData, 
+        workersData, 
+        setWorkersData, 
         isReversed, 
         setIsReversed,
         filterParam, 
@@ -47,9 +47,9 @@ const SearchResults = () => {
 
     const reverseOrder = () => {
         setIsReversed(!isReversed);
-        setJobsData({
-            ...jobsData,
-            filtered: jobsData.filtered.reverse()
+        setWorkersData({
+            ...workersData,
+            filtered: workersData.filtered.reverse()
         })
     };
 
@@ -62,23 +62,18 @@ const SearchResults = () => {
     const sortViaParam = param => {  //used at getParamAndSort()
         
         switch ( param ) {
-            case 'compensation':
-                return setJobsData({
-                    ...jobsData,
-                    filtered: jobsData.filtered.sort( (a,b) => b.compensation - a.compensation ),
+            case 'experience':
+                return setWorkersData({
+                    ...workersData,
+                    filtered: workersData.filtered.sort( (a,b) => b.experience - a.experience ),
                 });
-            case 'date':
-                return setJobsData({
-                    ...jobsData,
-                    filtered: jobsData.filtered.sort( (a,b) => new Date(b.date) - new Date(a.date) ) 
-                });
-            case 'duration':
-                return setJobsData({
-                    ...jobsData,
-                    filtered: jobsData.filtered.sort( (a,b) => a.duration - b.duration ) 
+            case 'rate':
+                return setWorkersData({
+                    ...workersData,
+                    filtered: workersData.filtered.sort( (a,b) => a.rate - b.rate ) 
                 });
             default:
-                return jobsData
+                return workersData
         }
     }
 
@@ -106,7 +101,7 @@ const SearchResults = () => {
                     name="options"
                     id="radio-group"
                 >
-                    {["Compensation", "Date", "Duration"].map(
+                    {["Experience", "Rate"].map(
                         (item) => (
                             <FormControlLabel
                                 key={item}
@@ -136,8 +131,8 @@ const SearchResults = () => {
                     </Typography>
                     <Typography variant="subtitle" sx={{fontSize: '.75rem', fontWeight: 500, mb: 1.5}}>
                         {
-                            jobsData.filtered.length !== 0 ? 
-                                jobsData.filtered.length + ` Match${jobsData.filtered.length > 1 ? 'es' : ''}` : 
+                            workersData.filtered.length !== 0 ? 
+                                workersData.filtered.length + ` Match${workersData.filtered.length > 1 ? 'es' : ''}` : 
                                 ( searchInput.category !== 'Any' ? '0 Match, Showing All Results' : '')
                         }
                     </Typography>
@@ -145,17 +140,16 @@ const SearchResults = () => {
                 <Divider />
                 <ResultsContainer>
                     { 
-                        jobsData.filtered
-                            .filter( item => jobsData.filtered.indexOf(item) >= range.start && jobsData.filtered.indexOf(item) <= range.end)
+                        workersData.filtered
+                            .filter( item => workersData.filtered.indexOf(item) >= range.start && workersData.filtered.indexOf(item) <= range.end)
                             .map( item => (
                                 <SearchItem
                                     key={item.id}
-                                    header={item.jobName}
-                                    body={item.description}
-                                    tags={item.requiredLang}
-                                    compensation={item.compensation}
-                                    duration={item.duration}
-                                    postDate={item.date}
+                                    header={item.fullName}
+                                    body={item.introduction}
+                                    tags={item.progLang}
+                                    rate={item.rate}
+                                    experience={item.experience}
                                     allData={item}
                                 />
                             )

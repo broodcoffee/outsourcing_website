@@ -1,6 +1,6 @@
 import { Box } from "@mui/system";
-import SearchBar from "../components/search/SearchBar";
-import SearchResults from "../components/search/SearchResults";
+import SearchBar from "../components/workers/SearchBar";
+import SearchResults from "../components/workers/SearchResults";
 import React, { useContext, useState, /*useEffect*/ } from 'react';
 import { workers } from '../data/workers';
 
@@ -10,7 +10,7 @@ export const useDataContext = () => useContext(DataContext);
 //COMPONENT
 const Search = () => {
 
-    const [ searchInput, setSearchInput ] = useState({ 
+    const [ searchWorkerInput, setSearchWorkerInput ] = useState({ 
         text: '',
         category: 'Any',
     });
@@ -25,7 +25,7 @@ const Search = () => {
 
 
     const searchStates = { 
-        searchInput, setSearchInput, //imported to SearchBar.js
+        searchWorkerInput, setSearchWorkerInput, //imported to SearchBar.js
         workersData, setWorkersData, //import to SearchBar.js & SearchResults.js
         isReversed, setIsReversed, //for ascending descending button @ SearchResults.js 
         filterParam, setFilterParam, //param for sort @ SearchResults.js 

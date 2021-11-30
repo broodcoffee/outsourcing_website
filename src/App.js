@@ -3,31 +3,25 @@ import Nav from "./components/Nav";
 import { theme } from './mui-theme';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { ResponsiveBox } from "./components/utils";
-import Search from "./pages/Search.js";
+import Jobs from "./pages/Jobs.js";
+import Workers from "./pages/Workers.js";
 import React, { useContext, useState } from "react";
-import SearchItemDetail from "./components/search/SearchItemDetail";
+import SearchJobDetail from "./components/search/SearchJobDetail";
+import SearchWorkerDetail from "./components/workers/SearchWorkerDetail";
 
 const GlobalData = React.createContext();
 export const useGlobalDataContext = () => useContext(GlobalData);
 
 function App() {
 
-    const [ itemDetail, setItemDetail ] = useState({
-        jobName: "", 
-        category: [], 
-        description: "", 
-        compensation: "", 
-        duration: "", 
-        employer: "", 
-        date: "",
-        lang: [],
-        jobId: "",
-    });
+    const [ itemDetail, setItemDetail ] = useState({});
     const [ searchModal, setSearchModal] = useState(false);
+    const [ pageName, setPageName ] = useState('jobs');
 
     const global = {
         itemDetail, setItemDetail,
-        setSearchModal
+        setSearchModal,
+        pageName, setPageName
     }
     
     return (
@@ -35,10 +29,12 @@ function App() {
             <GlobalData.Provider value={global}>
                 <Router>
                     <Nav />
-                    {searchModal && <SearchItemDetail />}
+                    {(searchModal && pageName === "jobs") && <SearchJobDetail /> }
+                    {(searchModal && pageName === "workers") && <SearchWorkerDetail /> }
                     <ResponsiveBox>
                         <Routes>
-                            <Route path="/search" element={<Search />} />
+                            <Route path="/jobs" element={<Jobs />} />
+                            <Route path="/workers" element={<Workers />} />
                         </Routes>
                     </ResponsiveBox>
                 </Router>

@@ -9,15 +9,14 @@ const SearchItemDetail = () => {
 
     const { itemDetail, setSearchModal } = useGlobalDataContext();
     let {
-        jobName,
-        category, 
-        description, 
-        compensation, 
-        duration, 
-        employer, 
-        date,
-        lang,
-        jobId,
+        fullName,
+        // category,
+        title,
+        description,
+        rate,
+        experience,
+        // id,
+        lang
     } = itemDetail;
 
     const handleClose = e => {
@@ -41,30 +40,17 @@ const SearchItemDetail = () => {
                             Close
                         </Button>
                     </BackLink>
-                        <ItemHeader>{ jobName }</ItemHeader>
+                        <ItemHeader>{ fullName.join(' ') }</ItemHeader>
+                        <ItemBody>{ title[0] }</ItemBody>
                         <ItemBody>{ description }</ItemBody>
                         <ItemTag>
                             { lang.sort().map( tag => <TagContent key={tag + Date.now()}>{ tag }</TagContent> ) }
                         </ItemTag>
                         <ItemInfo>
-                            <ItemInfoContent>Rate: <span>${ compensation }/hour</span></ItemInfoContent>
+                            <ItemInfoContent>Rate: <span>${ rate }/hour</span></ItemInfoContent>
                             <ItemInfoContent>
-                                Duration:&nbsp;
-                                <span>
-                                { duration >= 1 ? duration : 4 * duration }
-                                {
-                                    duration < 1 ?
-                                    ( 4 * duration === 1 ? ' week' : ' weeks' ) :
-                                    ( duration > 1 ? ' months' : ' month')
-                                }
-                            </span>
+                                Experience:&nbsp;<span>{experience}&nbsp;years</span>
                             </ItemInfoContent>
-                            <ItemInfoContent>Posted: <span>{ date }</span></ItemInfoContent>
-                        </ItemInfo>
-                        <ItemInfo>
-                                <ItemInfoContent>
-                                    Employer: <u>{employer}</u>
-                                </ItemInfoContent>
                         </ItemInfo>
                     </SubContainer1>
                     <SubContainer2>

@@ -24,7 +24,7 @@ const InputText = styled.input`
 const InputLabel = styled.label`
     font-size: .875rem;
 `
-const StyledLink = styled(Link)`
+const StyledRouterLink = styled(Link)`
     text-decoration: none;
 `
 
@@ -33,5 +33,5 @@ export {
     FlexBox, 
     InputText,
     InputLabel,
-    StyledLink
+    StyledRouterLink
 }

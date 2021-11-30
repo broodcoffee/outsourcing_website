@@ -13,21 +13,21 @@ const categories = [
 // COMPONENT
 const SearchBar = () => {
     const { 
-        searchInput, 
-        setSearchInput, 
-        jobsData, 
-        setJobsData, 
+        searchWorkerInput, 
+        setSearchWorkerInput, 
+        workersData, 
+        setWorkersData, 
         setIsReversed,
         setFilterParam,
       } = useDataContext();
 
     const handleTextChange = (e) => {
-        if(searchInput.text.length === 0) filterCategory()
-        setSearchInput({ ...searchInput, text: e.target.value });
+        if(searchWorkerInput.text.length === 0) filterCategory()
+        setSearchWorkerInput({ ...searchWorkerInput, text: e.target.value });
     }
 
     const handleCategoryChange = (e) => {
-        setSearchInput({ ...searchInput, category: e.target.value });  
+        setSearchWorkerInput({ ...searchWorkerInput, category: e.target.value });  
         filterCategory(e.target.value);
         setIsReversed(false);
         setFilterParam('');
@@ -40,11 +40,11 @@ const SearchBar = () => {
     }
 
     const search = () => {
-        setJobsData({
-            ...jobsData,
-            filtered: jobsData.filtered.filter( item => (
-                        item.jobName.toLowerCase()
-                            .includes(searchInput.text.toLowerCase())
+        setWorkersData({
+            ...workersData,
+            filtered: workersData.filtered.filter( item => (
+                        item.fullName.toLowerCase()
+                            .includes(searchWorkerInput.text.toLowerCase())
                     )
                 )
             }
@@ -54,17 +54,17 @@ const SearchBar = () => {
     };
 
     const filterCategory = (value) => {
-        setJobsData({
-            ...jobsData, 
-            filtered: jobsData.main.filter( job => (
-                job.category.includes((value ?? searchInput.category).toLowerCase())
+        setWorkersData({
+            ...workersData, 
+            filtered: workersData.main.filter( work => (
+                work.category.includes((value ?? searchWorkerInput.category).toLowerCase())
             ))
         })
     }
 
     useEffect(() => {
-        console.log(jobsData);
-    }, [jobsData]);
+        console.log(workersData);
+    }, [workersData]);
 
     return (
         <Box sx={boxStyle}>
@@ -73,7 +73,7 @@ const SearchBar = () => {
                 <Select
                     label="Category"
                     labelId="categories"
-                    value={searchInput.category}
+                    value={searchWorkerInput.category}
                     onChange={handleCategoryChange}
                     variant="outlined"
                     sx={inputStyle2}
@@ -94,7 +94,7 @@ const SearchBar = () => {
                     id="search-input"
                     sx={inputStyle}
                     autoComplete="off"
-                    value={searchInput.text}
+                    value={searchWorkerInput.text}
                     onChange={handleTextChange}
                     onKeyPress={handleSubmit}
                 />

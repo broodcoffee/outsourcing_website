@@ -10,7 +10,7 @@ import styled from '@emotion/styled';
 const PaginationComponent = () => {
 
     const { 
-        jobsData,
+        workersData,
         range,
         setRange,
      } = useDataContext();
@@ -18,7 +18,7 @@ const PaginationComponent = () => {
     const [ pageCount, setPageCount ] = useState();
 
     const calcPageCount = () => { //calculate page count based on array length. each page shows 10
-        let itemCount = jobsData.filtered.length / 10
+        let itemCount = workersData.filtered.length / 10
         let count =  Math.floor( itemCount ) + ( Number.isInteger(itemCount) ? 0 : 1 )
         return setPageCount(count)
     }
@@ -49,7 +49,7 @@ const PaginationComponent = () => {
     }
 
     // eslint-disable-next-line
-    useEffect( () => calcPageCount(), [jobsData])
+    useEffect( () => calcPageCount(), [workersData])
     
 
     return (

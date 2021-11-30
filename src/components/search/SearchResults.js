@@ -15,7 +15,7 @@ import { Sort, ArrowCircleDown } from "@mui/icons-material";
 import { theme } from "../../mui-theme";
 // import { useState } from "react";
 import SearchItem from "./SearchItem";
-import { useDataContext } from "../../pages/Search";
+import { useDataContext } from "../../pages/Jobs";
 import styled from '@emotion/styled';
 import PaginationComponent from "./Pagination";
 

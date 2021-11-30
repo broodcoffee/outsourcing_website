@@ -3,7 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { theme } from "../../mui-theme";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import { useDataContext } from "../../pages/Search";
+import { useDataContext } from "../../pages/Jobs";
 import { useEffect } from "react";
 
 const categories = [

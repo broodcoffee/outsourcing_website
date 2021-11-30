@@ -10,11 +10,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from "@mui/material";
 import { theme as customTheme } from "../mui-theme";
+import { useGlobalDataContext } from "../App";
 
 
 function Nav() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+    const { setPageName } = useGlobalDataContext();
 
 
     return (
@@ -31,7 +34,20 @@ function Nav() {
                     </Typography>
                     {!isMobile ? (
                         <Box>
-                            <StyledLink1 className="route-links" to="/">Find Workers</StyledLink1>
+                            <StyledLink 
+                                onClick={()=>setPageName("jobs")} 
+                                className="route-links" 
+                                to="/jobs"
+                            >
+                                Jobs
+                            </StyledLink>&nbsp;
+                            <StyledLink
+                                onClick={()=>setPageName("workers")} 
+                                className="route-links" 
+                                to="/workers"
+                            >
+                                Workers
+                            </StyledLink>
                             <StyledLink className="route-links" to="/about">About Us</StyledLink>
                             <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
                         </Box>
@@ -86,18 +102,18 @@ const StyledLink = styled(Link)`
         }
     }
 `;
-const StyledLink1 = styled(Link)`
-    border-radius: .25rem;
-    background-color: var(--color2);
-    color: var(--color5);
-    display: inline-block;
-    font-size: .875rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: .5rem .875rem;
-    transition: background-color .2s;
+// const StyledLink1 = styled(Link)`
+//     border-radius: .25rem;
+//     background-color: var(--color2);
+//     color: var(--color5);
+//     display: inline-block;
+//     font-size: .875rem;
+//     font-weight: 600;
+//     text-decoration: none;
+//     padding: .5rem .875rem;
+//     transition: background-color .2s;
 
-    &:hover {
-        background-color: var(--color1);
-    }
-`
+//     &:hover {
+//         background-color: var(--color1);
+//     }
+// `
