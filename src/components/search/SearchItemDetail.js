@@ -10,14 +10,14 @@ const SearchItemDetail = () => {
     const { itemDetail, setSearchModal } = useGlobalDataContext();
     let {
         jobName,
-        category, 
+        //category, 
         description, 
         compensation, 
         duration, 
         employer, 
         date,
         lang,
-        jobId,
+        //jobId,
     } = itemDetail;
 
     const handleClose = e => {

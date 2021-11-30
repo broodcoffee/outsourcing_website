@@ -32,8 +32,8 @@ function Nav() {
                     {!isMobile ? (
                         <Box>
                             <StyledLink1 className="route-links" to="/">Find Workers</StyledLink1>
-                            <StyledLink className="route-links" to="/about">About Us</StyledLink>
-                            <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
+                            <StyledLink className="route-links" to="/About">About Us</StyledLink>
+                            <StyledLink className="route-links" to="/Contact">Contact Us</StyledLink>
                         </Box>
                     ) : (
                         <IconButton
