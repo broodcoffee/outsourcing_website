@@ -11,6 +11,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from "@mui/material";
 import { theme as customTheme } from "../mui-theme";
 import { useGlobalDataContext } from "../App";
+import Logo from './Logo';
 
 
 function Nav() {
@@ -18,6 +19,12 @@ function Nav() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const { setPageName } = useGlobalDataContext();
+
+    const selectActive = (e) => { //puts an underline on a selected nav link
+        let links = document.querySelectorAll('.route-links');
+        links.forEach( link => link.classList.remove('active') );
+        e.target.classList.add('active');
+    }
 
 
     return (
@@ -30,26 +37,32 @@ function Nav() {
                     borderBottom: '1px solid var(--gray1)'
                 }}>
                     <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
-                        Outsourcing
+                        <Logo />
                     </Typography>
                     {!isMobile ? (
                         <Box>
                             <StyledLink 
-                                onClick={()=>setPageName("jobs")} 
+                                onClick={(e)=> {
+                                    setPageName("jobs");
+                                    selectActive(e)
+                                }} 
                                 className="route-links" 
                                 to="/jobs"
                             >
                                 Jobs
                             </StyledLink>&nbsp;
                             <StyledLink
-                                onClick={()=>setPageName("workers")} 
+                                onClick={(e)=> {
+                                    setPageName("workers");
+                                    selectActive(e)
+                                }} 
                                 className="route-links" 
                                 to="/workers"
                             >
                                 Workers
                             </StyledLink>
-                            <StyledLink className="route-links" to="/about">About Us</StyledLink>
-                            <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
+                            <StyledLink onClick={ e => selectActive(e)} className="route-links" to="/about">About Us</StyledLink>
+                            <StyledLink onClick={ e => selectActive(e)} className="route-links" to="/contact">Contact Us</StyledLink>
                         </Box>
                     ) : (
                         <IconButton
