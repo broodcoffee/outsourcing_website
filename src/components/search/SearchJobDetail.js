@@ -10,22 +10,14 @@ const SearchItemDetail = () => {
     const { itemDetail, setSearchModal } = useGlobalDataContext();
     let {
         jobName,
-<<<<<<< HEAD:src/components/search/SearchJobDetail.js
         // category, 
-=======
-        //category, 
->>>>>>> 0c35607afdfd1f28d17b764a988c1b75459252fa:src/components/search/SearchItemDetail.js
         description, 
         compensation, 
         duration, 
         employer, 
         date,
         lang,
-<<<<<<< HEAD:src/components/search/SearchJobDetail.js
         // jobId,
-=======
-        //jobId,
->>>>>>> 0c35607afdfd1f28d17b764a988c1b75459252fa:src/components/search/SearchItemDetail.js
     } = itemDetail;
 
     const handleClose = e => {

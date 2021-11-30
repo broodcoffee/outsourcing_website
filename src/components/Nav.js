@@ -34,7 +34,6 @@ function Nav() {
                     </Typography>
                     {!isMobile ? (
                         <Box>
-<<<<<<< HEAD
                             <StyledLink 
                                 onClick={()=>setPageName("jobs")} 
                                 className="route-links" 
@@ -51,11 +50,6 @@ function Nav() {
                             </StyledLink>
                             <StyledLink className="route-links" to="/about">About Us</StyledLink>
                             <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
-=======
-                            <StyledLink1 className="route-links" to="/">Find Workers</StyledLink1>
-                            <StyledLink className="route-links" to="/About">About Us</StyledLink>
-                            <StyledLink className="route-links" to="/Contact">Contact Us</StyledLink>
->>>>>>> 0c35607afdfd1f28d17b764a988c1b75459252fa
                         </Box>
                     ) : (
                         <IconButton
