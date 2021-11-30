@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import { ResponsiveBox } from "./components/utils";
 import Search from "./pages/Search.js";
 import React, { useContext, useState } from "react";
-import SearchItemDetail from "./pages/SearchItemDetail";
+import SearchItemDetail from "./components/search/SearchItemDetail";
 
 const GlobalData = React.createContext();
 export const useGlobalDataContext = () => useContext(GlobalData);
@@ -23,9 +23,11 @@ function App() {
         lang: [],
         jobId: "",
     });
+    const [ searchModal, setSearchModal] = useState(false);
 
     const global = {
-        itemDetail, setItemDetail
+        itemDetail, setItemDetail,
+        setSearchModal
     }
     
     return (
@@ -33,10 +35,10 @@ function App() {
             <GlobalData.Provider value={global}>
                 <Router>
                     <Nav />
+                    {searchModal && <SearchItemDetail />}
                     <ResponsiveBox>
                         <Routes>
                             <Route path="/search" element={<Search />} />
-                            <Route path="/search/item-detail" element={<SearchItemDetail />} />
                         </Routes>
                     </ResponsiveBox>
                 </Router>

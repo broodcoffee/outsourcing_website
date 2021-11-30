@@ -31,7 +31,7 @@ function Nav() {
                     </Typography>
                     {!isMobile ? (
                         <Box>
-                            <StyledLink1 className="route-links" to="/">Find Jobs</StyledLink1>
+                            <StyledLink1 className="route-links" to="/">Find Workers</StyledLink1>
                             <StyledLink className="route-links" to="/about">About Us</StyledLink>
                             <StyledLink className="route-links" to="/contact">Contact Us</StyledLink>
                         </Box>

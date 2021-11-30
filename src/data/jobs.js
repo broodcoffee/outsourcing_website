@@ -145,8 +145,30 @@ const jobs = [
         id:"CSTpP",
         employer:"Juls Jewelry",
         date:"2020-10-13"
+    },
+    {
+        jobName: "Developer",
+        category: ["back-end"],
+        description: "Our company is looking for a back-end developer office based with the ff qualifications:\n\n- Proficient in PHP Laravel framework \n- Must know how to use Bitbucket\n- Passionate and responsible team member\n- Eagerness to learn new ideas, concepts, and technologies\n- Working Hours 9am-6pm (Mon-Fri)",
+        compensation: 30, //dollars per hour
+        duration: "36",//months
+        requiredLang: ["JavaScript", "CSS", "HTML", "PHP", "MySQL", "Laravel"],
+        id:"m0XuCtKxNN",
+        employer:"Infosoft Studio",
+        date:"2021-11-28"
+    },
+    {
+        jobName: "Java Web Developer",
+        category: ["full-stack"],
+        description: "This vibrant company is in search of a talented and versatile Java Web Developer , who has a passion for designing and developing real world applications with a strong focus on Customer experience. The right developer will join this experienced and dedicated team developing with the latest tools, technologies and methodologies. This is an amazing opportunity for the right developer to further their career in this fast growing company.",
+        compensation: 35, //dollars per hour
+        duration: "99",//months
+        requiredLang: ["JavaScript", "CSS", "HTML", "PHP", "MySQL", "Laravel", "Ruby"],
+        id:"iiy0w8gosy",
+        employer:"Kremsoft",
+        date:"2021-11-30"
+    },
 
-    }
 ].sort( (a,b) => new Date(b.date) - new Date(a.date) );
 
 
