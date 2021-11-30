@@ -112,7 +112,7 @@ const jobs = [
 
     },
     {
-        jobName: "Web Developer( PHP Dev)",
+        jobName: "Web Developer (PHP Dev)",
         category: ["back-end"],
         description: "We are looking for a PHP Developer responsible for managing back-end services and the interchange of data between the server and the users. Your primary focus will be the development of all server-side logic, definition and maintenance of the central database, and ensuring high performance and responsiveness to requests from the front-end. You will also be responsible for integrating the front-end elements built by your co-workers into the application.",
         compensation: 26, //dollars per hour

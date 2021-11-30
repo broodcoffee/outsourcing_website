@@ -1,7 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
 import { ResponsiveBox } from "./utils";
 import { Link } from 'react-router-dom';
@@ -23,6 +22,7 @@ function Nav() {
     const selectActive = (e) => { //puts an underline on a selected nav link
         let links = document.querySelectorAll('.route-links');
         links.forEach( link => link.classList.remove('active') );
+        if(e.currentTarget.matches('.navbar-logo')) return;
         e.target.classList.add('active');
     }
 
@@ -36,9 +36,9 @@ function Nav() {
                     padding: '0 .25rem',
                     borderBottom: '1px solid var(--gray1)'
                 }}>
-                    <Typography variant="h6" color="primary" sx={{ fontSize: "1rem" }}>
-                        <Logo />
-                    </Typography>
+                    <Link to='/home' className='navbar-logo route-links' onClick={ e => selectActive(e)}> 
+                        <Logo className='navbar-logo' />
+                    </Link>
                     {!isMobile ? (
                         <Box>
                             <StyledLink 

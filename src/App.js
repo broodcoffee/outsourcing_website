@@ -8,6 +8,7 @@ import Workers from "./pages/Workers.js";
 import React, { useContext, useState } from "react";
 import SearchJobDetail from "./components/search/SearchJobDetail";
 import SearchWorkerDetail from "./components/workers/SearchWorkerDetail";
+import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 
@@ -35,10 +36,11 @@ function App() {
                     {(searchModal && pageName === "workers") && <SearchWorkerDetail /> }
                     <ResponsiveBox>
                         <Routes>
+                            <Route path="/home" element={<Home />} />
                             <Route path="/jobs" element={<Jobs />} />
                             <Route path="/workers" element={<Workers />} />
-                            <Route path="/About" element={<About />} />
-                            <Route path="/Contact" element={<Contact />} />
+                            <Route path="/about" element={<About />} />
+                            <Route path="/contact" element={<Contact />} />
                         </Routes>
                     </ResponsiveBox>
                 </Router>
