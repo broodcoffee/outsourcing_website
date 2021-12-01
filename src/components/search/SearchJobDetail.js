@@ -110,7 +110,7 @@ const ContentContainer = styled.div`
     width: calc(100% - 10rem);
     max-width: 75rem;
     background-color: #ffffff;
-    border-radius: 1rem;
+    border-radius: .25rem;
     transform: translateX(50%);
     opacity: 0;
     animation: ${entrance} .3s ease-out forwards;

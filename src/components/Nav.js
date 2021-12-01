@@ -5,12 +5,14 @@ import { Box } from "@mui/system";
 import { ResponsiveBox } from "./utils";
 import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { keyframes } from '@emotion/react';
 import MenuIcon from '@mui/icons-material/Menu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from "@mui/material";
 import { theme as customTheme } from "../mui-theme";
 import { useGlobalDataContext } from "../App";
 import Logo from './Logo';
+import { useState } from "react";
 
 
 function Nav() {
@@ -18,6 +20,7 @@ function Nav() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     const { setPageName } = useGlobalDataContext();
+    const [ drawerState, setDrawerState ] = useState(false);
 
     const selectActive = (e) => { //puts an underline on a selected nav link
         let links = document.querySelectorAll('.route-links');
@@ -25,7 +28,6 @@ function Nav() {
         if(e.currentTarget.matches('.navbar-logo')) return;
         e.target.classList.add('active');
     }
-
 
     return (
         <NavContainer position="sticky" color="default" sx={{ boxShadow: 0 }}>
@@ -65,13 +67,46 @@ function Nav() {
                             <StyledLink onClick={ e => selectActive(e)} className="route-links" to="/contact">Contact Us</StyledLink>
                         </Box>
                     ) : (
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="menu"
-                        >
-                            <MenuIcon htmlColor={customTheme.palette.grey[600]}/>
-                        </IconButton>
+                        <>
+                            <IconButton
+                                edge="start"
+                                color="inherit"
+                                aria-label="menu"
+                                onClick={() => setDrawerState(true)}
+                            >
+                                <MenuIcon htmlColor={customTheme.palette.grey[600]}/>
+                            </IconButton>
+                            { (drawerState && isMobile) &&
+                                <NavDrawer onClick={ () => setDrawerState(false) }>
+                                    <StyledLinkBox>
+                                        <StyledLink1 onClick={ e => selectActive(e)} className="route-links" to="/home">Home</StyledLink1>
+                                        <StyledLink1
+                                            onClick={(e)=> {
+                                                setPageName("jobs");
+                                                selectActive(e)
+                                            }}
+                                            className="route-links"
+                                            to="/jobs"
+                                        >
+                                            Jobs
+                                        </StyledLink1>
+                                        <StyledLink1
+                                            onClick={(e)=> {
+                                                setPageName("workers");
+                                                selectActive(e)
+                                            }}
+                                            className="route-links"
+                                            to="/workers"
+                                        >
+                                            Workers
+                                        </StyledLink1>
+                                        <StyledLink1 onClick={ e => selectActive(e)} className="route-links" to="/about">About Us</StyledLink1>
+                                        <StyledLink1 onClick={ e => selectActive(e)} className="route-links" to="/contact">Contact Us</StyledLink1>
+                                    </StyledLinkBox>
+                                </NavDrawer>
+                            }
+                        </>
+                        
                     )}
                 </Toolbar>
             </ResponsiveBox>
@@ -80,6 +115,7 @@ function Nav() {
 }
 
 export default Nav;
+
 
 const NavContainer = styled(AppBar)`
     background-color: var(--color5);
@@ -115,18 +151,36 @@ const StyledLink = styled(Link)`
         }
     }
 `;
-// const StyledLink1 = styled(Link)`
-//     border-radius: .25rem;
-//     background-color: var(--color2);
-//     color: var(--color5);
-//     display: inline-block;
-//     font-size: .875rem;
-//     font-weight: 600;
-//     text-decoration: none;
-//     padding: .5rem .875rem;
-//     transition: background-color .2s;
 
-//     &:hover {
-//         background-color: var(--color1);
-//     }
-// `
+const NavDrawer = styled.div`
+    position: absolute;
+    background-color: #37474f92;
+    height: 100vh;
+    width: calc(100% + 1rem);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row-reverse;
+`
+const entrance = keyframes`
+    to {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+`
+const StyledLinkBox = styled(Box)`
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: max-content;
+    gap: 1rem;
+    padding: 2rem 3rem 0 2rem;
+    background-color: var(--color5);
+    transform: translateX(50%);
+    opacity: 0;
+    animation: ${entrance} .3s ease-out forwards;
+`
+const StyledLink1 = styled(StyledLink)`
+    width: max-content;
+`

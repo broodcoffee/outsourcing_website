@@ -11,6 +11,7 @@ import SearchWorkerDetail from "./components/workers/SearchWorkerDetail";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Footer from "./components/Footer";
 
 const GlobalData = React.createContext();
 export const useGlobalDataContext = () => useContext(GlobalData);
@@ -43,6 +44,7 @@ function App() {
                             <Route path="/contact" element={<Contact />} />
                         </Routes>
                     </ResponsiveBox>
+                    <Footer />
                 </Router>
             </GlobalData.Provider>
         </ThemeProvider>

@@ -1,49 +1,49 @@
 import styled from "@emotion/styled";
 
-const Logo = () => {
+const Logo = ({textColor, logoColor, circleFill, xPos}) => {
     return (
-        <MainContainer>
-            <LogoContainer title="codesourcing">
+        <MainContainer xPos={xPos}>
+            <LogoContainer title="codesourcing" textColor={textColor}>
                 <AbsoluteContainer rotate={30}>
                     <FlexContainer>
-                        <Circle />
-                        <Line />
-                        <Circle />
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
+                        <Line logoColor={logoColor}/>
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
                     </FlexContainer>
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={90}>
                     <FlexContainer>
-                        <Circle />
-                        <Line />
-                        <Circle />
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
+                        <Line logoColor={logoColor}/>
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
                     </FlexContainer>
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={150}>
                     <FlexContainer>
-                        <Circle />
-                        <Line />
-                        <Circle />
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
+                        <Line logoColor={logoColor}/>
+                        <Circle logoColor={logoColor} circleFill={circleFill} />
                     </FlexContainer>
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={30}>
-                    <Circle />
+                    <Circle logoColor={logoColor} circleFill={circleFill} />
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={120}>
                     <FlexContainer2>
-                        <ShortLine />
-                        <ShortLine />
+                        <ShortLine logoColor={logoColor}/>
+                        <ShortLine logoColor={logoColor}/>
                     </FlexContainer2>
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={180}>
                     <FlexContainer2>
-                        <ShortLine />
-                        <ShortLine />
+                        <ShortLine logoColor={logoColor}/>
+                        <ShortLine logoColor={logoColor}/>
                     </FlexContainer2>
                 </AbsoluteContainer>
                 <AbsoluteContainer rotate={240}>
                     <FlexContainer2>
-                        <ShortLine />
-                        <ShortLine />
+                        <ShortLine logoColor={logoColor}/>
+                        <ShortLine logoColor={logoColor}/>
                     </FlexContainer2>
                 </AbsoluteContainer>
             </LogoContainer>
@@ -58,7 +58,7 @@ const MainContainer = styled.div`
     place-items: center;
     height: 2.5rem;
     width: 2.5rem;
-    transform: translateY(-.625rem);
+    transform: translateY(-.625rem) translateX(${ props => props.xPos ?? 0 });
 `
 const LogoContainer = styled.div`
     position: relative;
@@ -71,8 +71,8 @@ const LogoContainer = styled.div`
         display: inline-block;
         position: absolute;
         left: 3.5rem;
-        top: 1rem;
-        color: var(--color1);
+        top: 1.25rem;
+        color: ${ props => props.textColor ?? 'var(--gray5)'};
         font-weight: 700;
     }
 `
@@ -91,15 +91,15 @@ const AbsoluteContainer = styled.div`
 const Circle = styled.div`
     height: .5rem;
     width: .5rem;
-    background-color: #fff;
-    border: .125rem solid var(--color1);
+    background-color: ${ props => props.circleFill ?? '#fff'};
+    border: .125rem solid ${ props => props.logoColor ?? 'var(--color1)'};
     border-radius: 50%;
     z-index: 99;
 `
 const Line = styled.div`
     height: .125rem;
     width: 2rem;
-    background-color: var(--color1);
+    background-color: ${ props => props.logoColor ?? 'var(--color1)'};
 `
 const FlexContainer2 = styled.div`
     display: flex;
@@ -110,6 +110,6 @@ const FlexContainer2 = styled.div`
 const ShortLine = styled.div`
     height: .125rem;
     width: .875rem;
-    background-color: var(--color1);
+    background-color: ${ props => props.logoColor ?? 'var(--color1)'};
     transform: rotate(90deg);
 `
