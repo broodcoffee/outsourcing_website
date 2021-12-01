@@ -34,22 +34,22 @@ const cardContents = [
         imgSource: "https://i.picsum.photos/id/1005/5760/3840.jpg?hmac=2acSJCOwz9q_dKtDZdSB-OIK1HUcwBeXco_RMMTUgfY",
         name: 'Arnulfo',
         description: lorem,
+        portfolioLink:"https://github.com/arn-misagal",
         githubLink: "https://github.com/arn-misagal",
-        portfolio: "https://github.com/arn-misagal",
     },
     {
         imgSource: "https://i.picsum.photos/id/338/2000/1333.jpg?hmac=-sTSfHkgHcFg1Jdut1v8HTVl9S1cyeMQ0OY_8dj30fY",
         name: 'Lemuel',
         description: lorem,
+        portfolioLink:"https://sickenwings.vercel.app/",
         githubLink: "https://github.com/nameiswing",
-        portfolio: 'https://sickenwings.vercel.app/',
     },
     {
         imgSource: "https://i.picsum.photos/id/1011/5472/3648.jpg?hmac=Koo9845x2akkVzVFX3xxAc9BCkeGYA9VRVfLE4f0Zzk",
         name: 'Rhodette',
         description: lorem,
+        portfolioLink:"https://broodcoffee.github.io/portfolio/",
         githubLink: "https://github.com/broodcoffee",
-        portfolio: "https://broodcoffee.github.io/portfolio/",
     },
     
 ]
@@ -110,8 +110,8 @@ function About() {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Link underline="none" href={item.portfolio} target="_blank">
-                            <Button size="small" startIcon={<PersonIcon />} sx={{mr:2, ml:'auto'}}>Portfolio</Button>
+                        <Link underline="none" sx={{ml:'auto'}} href={item.portfolioLink} target="_blank">
+                            <Button size="small" startIcon={<PersonIcon />} sx={{mr:2}}>Portfolio</Button>
                         </Link>
                         <Link underline="none" href={item.githubLink} target="_blank">
                             <Button size="small" startIcon={<GitHubIcon />} sx={{mr:1}}>Github</Button>
