@@ -22,9 +22,9 @@ const useStyles = makeStyles( () => ({
         flexWrap: 'wrap'
     },
     cardItems: {
-        margin: '1rem'
+        margin: '1rem',
+        boxShadow:  '2px 2px 12px rgba(3, 93, 128, 0.445)'
     }
-
 }))
 
 const lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -54,7 +54,7 @@ const cardContents = [
 
 function About() {
     const classes = useStyles();
-
+    
     return (
         <>
             <div id='about'>
