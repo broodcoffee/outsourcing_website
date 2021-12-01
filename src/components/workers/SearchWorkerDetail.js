@@ -4,6 +4,7 @@ import { useGlobalDataContext } from "../../App";
 import { theme } from "../../mui-theme";
 import { Close } from "@mui/icons-material";
 import { Button } from "@mui/material";
+import { StyledButton } from "../utils";
 
 const SearchItemDetail = () => {
 
@@ -54,7 +55,7 @@ const SearchItemDetail = () => {
                         </ItemInfo>
                     </SubContainer1>
                     <SubContainer2>
-                        
+                        <StyledButton>Hire Worker</StyledButton>
                     </SubContainer2>
                 </ContentContainer>
             </Container>
@@ -128,6 +129,8 @@ const SubContainer1 = styled.div`
     }
 `
 const SubContainer2 = styled.div`
+    display: grid;
+    place-items: center;
     padding: 1rem;
     border-radius: 0.5rem;
     background-color: var(--gray);

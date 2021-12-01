@@ -1,6 +1,11 @@
 import React from 'react'
+import { useGlobalDataContext } from '../App';
+import { StyledRouterLink } from './utils';
 
 const DevBox = (props) => {
+
+    const { setCategory } = useGlobalDataContext();
+    
     return (
         <div className='a-box'>
             <div className='a-b-img'>
@@ -9,7 +14,14 @@ const DevBox = (props) => {
 
             <div claassName='a-b-text'>
                 <h2>{props.title}</h2>
-                <a href='/workers' type='button' className='devbox-button'>Hire now</a>
+                <StyledRouterLink 
+                    to='/workers' 
+                    type='button' 
+                    className='devbox-button'
+                    onClick={()=>setCategory(props.category)}
+                >
+                    Hire now
+                </StyledRouterLink>
             </div>
         </div>
     )
