@@ -331,7 +331,7 @@ input{
     padding: 10px;
     border: none;
     outline: none;
-    background-color: var(--color5);
+    background-color: var(--color4);
     color: var(--gray4);
     border-radius: 5px;
 }
