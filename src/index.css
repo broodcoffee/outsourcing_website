@@ -99,17 +99,19 @@ input{
 	transform: translate(-25%,-55%);
 }
 .header-heading span{
-    font-family: '';
+    font-family: var(--font1);
     color: var(--gray5);
     border-bottom: 2px solid var(--gray5);
 }
 .header-heading h3{
 	font-size: 1.6rem;
+    font-family: var(--font1);
 	margin:0px;
 	letter-spacing: 2px;
 	color:var(--gray5);
 }
 .header-heading h1{
+    font-family: var(--font1);
 	font-size: 4rem;
 	margin:0px;
 	letter-spacing: 2px;
