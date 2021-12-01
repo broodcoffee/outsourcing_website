@@ -36,7 +36,7 @@ function Nav() {
                     padding: '0 .25rem',
                     borderBottom: '1px solid var(--gray1)'
                 }}>
-                    <Link to='/home' className='navbar-logo route-links' onClick={ e => selectActive(e)}> 
+                    <Link to='/' className='navbar-logo route-links' onClick={ e => selectActive(e)}> 
                         <Logo className='navbar-logo' />
                     </Link>
                     {!isMobile ? (

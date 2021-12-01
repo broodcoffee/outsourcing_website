@@ -36,7 +36,7 @@ function App() {
                     {(searchModal && pageName === "workers") && <SearchWorkerDetail /> }
                     <ResponsiveBox>
                         <Routes>
-                            <Route path="/home" element={<Home />} />
+                            <Route path="/" element={<Home />} />
                             <Route path="/jobs" element={<Jobs />} />
                             <Route path="/workers" element={<Workers />} />
                             <Route path="/about" element={<About />} />
