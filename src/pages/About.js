@@ -2,6 +2,7 @@ import React from 'react';
 import aboutimage from '../images/c1.jpg';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
+import styled  from '@emotion/styled';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -22,8 +23,7 @@ const useStyles = makeStyles( () => ({
         flexWrap: 'wrap'
     },
     cardItems: {
-        margin: '1rem',
-        boxShadow:  '2px 2px 12px rgba(3, 93, 128, 0.445)'
+        margin: '1rem'
     }
 }))
 
@@ -89,7 +89,7 @@ function About() {
 
             <Box className={classes.cardContainer}>
             {cardContents.map( item => (
-                <Card className={classes.cardItems} sx={{ maxWidth: 345 }} key={item.name + item.githubLink}>
+                <StyledCard className={classes.cardItems} sx={{ maxWidth: 345 }} key={item.name + item.githubLink}>
                     <CardMedia
                         component="img"
                         alt="profile"
@@ -113,7 +113,7 @@ function About() {
                             <Button size="small" startIcon={<GitHubIcon />} sx={{mr:1}}>Github</Button>
                         </Link>
                     </CardActions>
-                </Card>
+                </StyledCard>
             ))}
             </Box>
 
@@ -123,3 +123,8 @@ function About() {
 
 export default About;
 
+const StyledCard = styled(Card)`
+    &:hover {
+        box-shadow:  2px 2px 12px rgba(3, 93, 128, 0.445);
+    }
+`

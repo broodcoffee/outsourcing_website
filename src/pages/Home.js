@@ -14,16 +14,21 @@ const Home = () => {
                     <h1><span>CODE</span> FOR<br /> WEEK</h1><br /><br />
                         <a href='#section' className='header-btn'>Dev</a>
                 </div>
+                <div className='header-heading'>
+                    <h3>Want a place to start your career?</h3><br />
+                    <h1><span>LOOK</span> RIGHT <br /> HERE</h1><br /><br />
+                        <a href='/jobs' className='header-btn'>Find Jobs</a>
+                </div>
             </div>
-            <div id='products'>
+            <div id='developers'>
                 <h1>CHOOSE YOUR DEV.</h1>
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, 
                     looked up one of the more obscure Latin words, consectetur</p>
-                    <div className='a-container'>
-                        <DevBox image={pimage1} title="Full-Stack Developer" />
-                        <DevBox image={pimage2} title="Front-End Developer" />
-                        <DevBox image={pimage3} title="Back-End Developer" />  
-                    </div>;
+                <div className='a-container'>
+                    <DevBox image={pimage1} title="Full-Stack Developer" />
+                    <DevBox image={pimage2} title="Front-End Developer" />
+                    <DevBox image={pimage3} title="Back-End Developer" />  
+                </div>
             </div>            
         </>
     )
