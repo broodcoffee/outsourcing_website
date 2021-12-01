@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/system';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import PersonIcon from '@mui/icons-material/Person';
 import { Link } from '@mui/material';
 
 
@@ -62,10 +62,8 @@ function About() {
                     <h1>ABOUT US</h1>
                     <p>At Codesourcing, we strive to source talented Web Developers to help clients in their Website needs. 
                         Meanwhile, we also enable talents to reach better opportunities to maximize their potentials in their career. 
-                        If you are going to use a passage of Lorem Ipsum,
-                            you need to be sure there isn't anything embarrassing hidden in the middle of text. 
-                            All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, 
-                            making this the first true generator on the Internet. </p>
+                        <br /><br />If you wish to open more opportunities to aspiring talents, or if you are someone looking for a match to your potentials,
+                        we are more than happy to work with you. </p>
                             <a href='/contact' type='button' className='about-button'>Contact Us</a>
                 </div>
                 <div className='about-image'>
@@ -85,7 +83,7 @@ function About() {
                 }}
             >
                 The Team
-                
+
             </Typography>
 
             <Box className={classes.cardContainer}>
@@ -109,7 +107,7 @@ function About() {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button size="small" startIcon={<FacebookIcon />} sx={{mr:2, ml:'auto'}}>Portfolio</Button>
+                        <Button size="small" startIcon={<PersonIcon />} sx={{mr:2, ml:'auto'}}>Portfolio</Button>
                         <Link underline="none" href={item.githubLink} target="_blank">
                             <Button size="small" startIcon={<GitHubIcon />} sx={{mr:1}}>Github</Button>
                         </Link>
