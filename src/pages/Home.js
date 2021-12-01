@@ -6,6 +6,8 @@ import pimage3 from '../images/p3.png';
 
 
 const Home = () => {
+
+    
     return (
         <>
             <div id='main'>
@@ -20,9 +22,9 @@ const Home = () => {
                 <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, 
                     looked up one of the more obscure Latin words, consectetur</p>
                 <div className='a-container'>
-                    <DevBox image={pimage1} title="Full-Stack Developer" />
-                    <DevBox image={pimage2} title="Front-End Developer" />
-                    <DevBox image={pimage3} title="Back-End Developer" />  
+                    <DevBox image={pimage1} title="Full-Stack Developer" category="full-stack" />
+                    <DevBox image={pimage2} title="Front-End Developer" category="front-end" />
+                    <DevBox image={pimage3} title="Back-End Developer" category="back-end"/>  
                 </div>
             </div>            
         </>

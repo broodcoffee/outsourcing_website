@@ -3,6 +3,7 @@ import SearchBar from "../components/search/SearchBar";
 import SearchResults from "../components/search/SearchResults";
 import React, { useContext, useState, /*useEffect*/ } from 'react';
 import { jobs } from '../data/jobs';
+import { useGlobalDataContext } from "../App";
 
 const DataContext = React.createContext();
 export const useDataContext = () => useContext(DataContext);
@@ -10,9 +11,11 @@ export const useDataContext = () => useContext(DataContext);
 //COMPONENT
 const Search = () => {
 
+    const { category } = useGlobalDataContext();
+
     const [ searchInput, setSearchInput ] = useState({ 
         text: '',
-        category: 'Any',
+        category: category ?? 'Any',
     });
     const [ jobsData, setJobsData ] = useState({ 
         main: jobs, 

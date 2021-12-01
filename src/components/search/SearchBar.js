@@ -19,6 +19,7 @@ const SearchBar = () => {
         setJobsData, 
         setIsReversed,
         setFilterParam,
+        setRange
       } = useDataContext();
 
     const handleTextChange = (e) => {
@@ -31,6 +32,7 @@ const SearchBar = () => {
         filterCategory(e.target.value);
         setIsReversed(false);
         setFilterParam('');
+        setRange({start: 0, end: 9})
     };
 
     const handleSubmit = (e) => {

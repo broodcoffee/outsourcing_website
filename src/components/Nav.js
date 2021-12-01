@@ -79,7 +79,7 @@ function Nav() {
                             { (drawerState && isMobile) &&
                                 <NavDrawer onClick={ () => setDrawerState(false) }>
                                     <StyledLinkBox>
-                                        <StyledLink1 onClick={ e => selectActive(e)} className="route-links" to="/home">Home</StyledLink1>
+                                        <StyledLink1 onClick={ e => selectActive(e)} className="route-links" to="/">Home</StyledLink1>
                                         <StyledLink1
                                             onClick={(e)=> {
                                                 setPageName("jobs");

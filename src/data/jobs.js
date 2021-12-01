@@ -96,7 +96,7 @@ const jobs = [
         requiredLang: ["PHP", "MySql"],
         id:"y5t6_",
         employer:"Security Social",
-        date:"2022-5-19"
+        date:"2021-5-19"
 
     },
     {
@@ -176,7 +176,7 @@ const jobs = [
         requiredLang: ["JavaScript", "CSS", "HTML", "React","MySQL"],
         id:"b3w-5",
         employer:"Intrado",
-        date:"2022-12-1",
+        date:"2021-12-1",
         category: ["front-end"],
     },
 

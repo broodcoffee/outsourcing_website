@@ -21,11 +21,13 @@ function App() {
     const [ itemDetail, setItemDetail ] = useState({});
     const [ searchModal, setSearchModal] = useState(false);
     const [ pageName, setPageName ] = useState('jobs');
+    const [ category, setCategory ] = useState('Any');
 
     const global = {
         itemDetail, setItemDetail,
         setSearchModal,
-        pageName, setPageName
+        pageName, setPageName,
+        category, setCategory 
     }
     
     return (

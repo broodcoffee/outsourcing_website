@@ -7,7 +7,7 @@ const Footer = () => {
         <FooterBox>
             <FooterContent>
                 <FlexContainer>
-                    <StyledRouterLink to="/home">
+                    <StyledRouterLink to="/">
                         <Logo
                             textColor="#fff"
                             logoColor="var(--color3)"
