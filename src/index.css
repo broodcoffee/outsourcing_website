@@ -78,8 +78,8 @@ button{
     border: none;
 }
 input{
-    outline: none;
-    border: none;
+    /* outline: none;
+    border: none; */
 }
 
 #main{
@@ -300,7 +300,7 @@ input{
 
 #contact{
     margin-top: 120px;
-    background-image: url(./images/footer2.jpg);
+    /* background-image: url(./images/footer2.jpg); */
     background-size: cover;
     width:100%;
     display:flex;
@@ -313,7 +313,7 @@ input{
 }
 #contact h1{
         font-size: 3.5rem;
-        color:var(--color3);
+        color:var(--color1);
         font-weight: 500;
         margin: 0px;
         padding: 0px;
@@ -327,7 +327,7 @@ input{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 40px;
+    margin-bottom: 8rem;
 }
 #contact form input,
 #contact form textarea{
@@ -335,20 +335,28 @@ input{
     height:50px;
     margin:5px 0px;
     padding: 10px;
-    border: none;
-    outline: none;
-    background-color: var(--color4);
+    /* border: none;
+    outline: none; */
+    /* background-color: var(--color4); */
     color: var(--gray4);
-    border-radius: 5px;
+    /* border-radius: 5px; */
 }
 #contact form textarea{
     height: 150px;
 }
 #contact form input[type="submit"]{
     height: 45px;
-    background: linear-gradient(90deg, var(--color3) 20%,var(--color3));
+    background-color: var(--color2);
     color: var(--color5);
     text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: .25rem;
+    transition: .2s;
+}
+#contact form input[type="submit"]:hover {
+    background-color: var(--color1);
 }
 @media(max-width:620px){
     #contact form{
